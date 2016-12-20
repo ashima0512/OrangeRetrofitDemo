@@ -1,17 +1,15 @@
-# OrangeRetrofitDemo
-
 ##OrangeRetrofit
 基于Retrofit封装，API透明化，使用时不涉及Retrofit细节。
 链式调用，使用简单：
 ```
 HttpRequest.builder(
 	new PostJsonBuilder()
-		.url(ApiUrl.LOGIN)
-                .defaultHeaders()
-                .param("mobile", "15818703208")
-                .param("password", Md5.md5Toword("123456789"))
-                .modelClazz(LoginModel.class)
-                .callback(callback)).startCall();
+	.url(ApiUrl.LOGIN)
+        .defaultHeaders()
+        .param("mobile", "15818703208")
+        .param("password", Md5.md5Toword("123456789"))
+        .modelClazz(LoginModel.class)
+        .callback(callback)).startCall();
 ```
 ```
 new PostJsonBuilder()
