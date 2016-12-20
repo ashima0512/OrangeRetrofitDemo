@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestOrange</string>
+    <string name="login">登录</string>
+    <string name="wallet_my_account">我的账户</string>
+    <string name="download">下载</string>
+    <string name="upload">上传</string>
+</resources>
