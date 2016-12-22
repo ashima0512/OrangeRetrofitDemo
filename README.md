@@ -1,6 +1,7 @@
 ##OrangeRetrofit
-»ùÓÚRetrofit·â×°£¬APIÍ¸Ã÷»¯£¬Ê¹ÓÃÊ±²»Éæ¼°RetrofitÏ¸½Ú¡£
-Á´Ê½µ÷ÓÃ£¬Ê¹ÓÃ¼òµ¥£º
+åŸºäºRetrofitå°è£…ï¼ŒAPIé€æ˜åŒ–ï¼Œä½¿ç”¨æ—¶ä¸æ¶‰åŠRetrofitç»†èŠ‚ã€‚
+é“¾å¼è°ƒç”¨ï¼Œä½¿ç”¨ç®€å•ï¼š
+ä½¿ç”¨å‰åœ¨Applicationçš„onCreateæ–¹æ³•ä¸­è°ƒç”¨OrangeRetrofit.init(this)
 ```
 HttpRequest.builder(
 	new PostJsonBuilder()
@@ -18,7 +19,7 @@ new PostJsonBuilder()
         .callback(callback).create().startCall();
 ```
 
-Çë²é¿´DemoÔ´Âë
+è¯·æŸ¥çœ‹Demoæºç 
 
 
 ##Use
