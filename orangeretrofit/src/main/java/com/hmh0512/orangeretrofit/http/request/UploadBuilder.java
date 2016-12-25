@@ -1,9 +1,14 @@
 package com.hmh0512.orangeretrofit.http.request;
 
+import com.hmh0512.orangeretrofit.http.eventbus.ProgressEvent;
 import com.hmh0512.orangeretrofit.OrangeRetrofit;
 import com.hmh0512.orangeretrofit.http.FileRequestBody;
 import com.hmh0512.orangeretrofit.util.LogUtils;
 import com.hmh0512.orangeretrofit.util.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.HashMap;
@@ -25,6 +30,7 @@ public class UploadBuilder extends HttpRequest.Builder {
 
     public UploadBuilder(File uploadedFile) {
         this.mUploadedFile = uploadedFile;
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -58,5 +64,10 @@ public class UploadBuilder extends HttpRequest.Builder {
     @Override
     public void onRequestSuccess(Response<ResponseBody> response) {
         super.onRequestSuccess(response);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ProgressEvent event) {
+        mCallback.onProgressOnUi(event.getProgress(), event.getTotal());
     }
 }

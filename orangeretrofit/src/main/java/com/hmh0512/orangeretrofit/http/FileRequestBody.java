@@ -1,8 +1,11 @@
 package com.hmh0512.orangeretrofit.http;
 
+import com.hmh0512.orangeretrofit.http.eventbus.ProgressEvent;
 import com.hmh0512.orangeretrofit.OrangeRetrofit;
 import com.hmh0512.orangeretrofit.util.FormatUtils;
 import com.hmh0512.orangeretrofit.util.LogUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
@@ -73,13 +76,14 @@ public class FileRequestBody extends RequestBody {
                 if (currentTime - startTime > OrangeRetrofit.UPLOAD_PROGRESS_INTERVAL || bytesWritten == contentLength) {
                     startTime = currentTime;
                     LogUtils.d("uploaded " + bytesWritten + " of " + contentLength + ", startTime=" + FormatUtils.toDate(startTime) + ", endTime=" + FormatUtils.toDate(currentTime));
-                    //回调 要切换到主线程
-                    OrangeRetrofit.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mCallback.onProgressOnUi(bytesWritten, contentLength);
-                        }
-                    });
+                    EventBus.getDefault().post(new ProgressEvent(bytesWritten, contentLength));
+//                    //回调 要切换到主线程
+//                    OrangeRetrofit.runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mCallback.onProgressOnUi(bytesWritten, contentLength);
+//                        }
+//                    });
                 }
             }
         };
